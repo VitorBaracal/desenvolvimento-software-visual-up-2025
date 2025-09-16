@@ -1,0 +1,12 @@
+
+### GET PRODUTO
+get http://localhost:5168/api/produto/listar
+### POST PRODUTO 
+post http://localhost:5168/api/produto/cadastrar
+Content-Type: application/json
+
+{
+    "nome":"Mouse",
+    "quantidade": 123,
+    "preco": 57.75
+}

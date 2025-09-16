@@ -13,10 +13,8 @@ for (int i = 0; i < tamanho; i++)
 }
 
 Array.Sort(vetor);
-
-
 Console.WriteLine("\n");
 for (int i = 0; i < tamanho; i++)
 {
-    Console.Write(vetor[i] + " | ");
+    Console.Write(vetor[i] + " ");
 }

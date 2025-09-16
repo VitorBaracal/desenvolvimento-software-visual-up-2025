@@ -1,8 +1,10 @@
-﻿// Steps to solve boubble source
-// 1 - Criar um array para receber 100 posições
-// 2 - Criar laço de repetição para percorrer o vetor
-// 3 - Preencher cada posição com um valor aleatório
-// 4 - Imprimir um vetor com valores aleatórios
+﻿//Passos para resolver o bubble sort
+//1 - Criar um vetor para receber 100 posições
+//2 - Criar um laço de repetição para percorrer
+//o vetor
+//3 - Preencher cada posição com um valor 
+//aleatório
+//4 - Imprimir o vetor com valores aleatórios
 
 int tamanho = 100;
 int[] vetor = new int[tamanho];
@@ -18,33 +20,57 @@ for (int i = 0; i < tamanho; i++)
     Console.Write(vetor[i] + " ");
 }
 
-// 5 - Percorrer o vetor com valores aleatórios
-// 6 - Comparar a posição atual com a próxima
-// 7 - Se a posição for maior inverter os valores
+//5 - Percorrer o vetor com valores aleatórios
+//6 - Comparar a posição atual com a próxima
+//7 - Se a posição atual for maior, inverte 
+//os valores
+//8 - Imprimir o vetor com valores ordenados
 
+
+
+for (int i = 0; i < vetor.Length - 1; i++)
+{
+    
+    int atual = vetor[i];
+    int proximo = vetor[i + 1];
+    if (atual > proximo)
+    {
+        int aux = atual;
+        vetor[i] = proximo;
+        vetor[i + 1] = aux;
+    }
+}
+
+Console.WriteLine("\n");
+for (int i = 0; i < tamanho; i++)
+{
+    Console.Write(vetor[i] + " ");
+}
+
+//9- Percorrer o vetor com valores aleatórios
+//10- Percorrer o vetor até ordenar ele todo
+//11- Ou percorrer o vetor de forma decrescente até ordenar o vetor
 bool troca = false;
 do
 {
     troca = false;
     for (int i = 0; i < vetor.Length - 1; i++)
     {
+        
         int atual = vetor[i];
         int proximo = vetor[i + 1];
         if (atual > proximo)
         {
+            troca = true;
             int aux = atual;
             vetor[i] = proximo;
             vetor[i + 1] = aux;
-
-            troca = true;
         }
     }
-} while (troca);
+} while (troca == true);
 
 Console.WriteLine("\n");
 for (int i = 0; i < tamanho; i++)
 {
-    Console.Write(vetor[i] + " | ");
+    Console.Write(vetor[i] + " ");
 }
-
-
