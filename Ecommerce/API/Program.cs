@@ -1,4 +1,5 @@
 using API.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -23,13 +24,35 @@ app.MapGet("/", () => "API de Produtos");
 // Get
 app.MapGet("/api/produto/listar", () =>
 {
-    return produtos;
+    if (produtos.Any())
+    {
+        return Results.Ok(produtos); // Retorna a lista de produtos
+    }
+    else
+    {
+        return Results.NotFound("Nenhum produto encontrado"); // Retorna erro 404 caso não haja produtos
+    }
+});
+
+// Get \api\produto\buscar\nome_do_produto
+
+app.MapGet("/api/produto/buscar/{nome}", (string nome) =>
+{
+
 });
 
 // Post
-app.MapPost("/api/produto/cadastrar", (Produto produto) =>
+app.MapPost("/api/produto/cadastrar", ([FromBody] Produto produto) =>
 {
+    bool produtoExiste = produtos.Any(p => p.Nome.Equals(produto.Nome, StringComparison.OrdinalIgnoreCase));
+
+    if (produtoExiste)
+    {
+        return Results.Conflict("Produto já cadastrado.");
+    }
+
     produtos.Add(produto);
+    return Results.Ok("Produto cadastrado com sucesso.");
 });
 
 app.Run();
